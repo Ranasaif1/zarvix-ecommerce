@@ -1,0 +1,8 @@
+{
+    "currency": "PKR (Rs)",
+    "shippingFee": 500,
+    "freeShippingThreshold": 5000,
+    "codEnabled": false,
+    "cardEnabled": true,
+    "maintenanceMode": false
+}
