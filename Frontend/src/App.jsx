@@ -9,32 +9,32 @@ import Footer from './components/Footer.jsx';
 import PageBanner from './components/PageBanner.jsx'; 
 
 // === PAGES ===
-import Home from './pages/Home.jsx';
-import Cart from './pages/Cart.jsx'; 
-import Contact from './pages/Contact.jsx'; 
-import About from './pages/About.jsx'; 
-import Terms from './pages/Terms.jsx'; 
-import PrivacyPolicy from './Pages/PrivacyPolicy.jsx';
-import ReturnPolicy from './pages/ReturnPolicy.jsx';
-import ShippingPolicy from './pages/ShippingPolicy.jsx';
-import Shop from './pages/Shop.jsx'; 
-import ProductDetail from './pages/ProductDetail.jsx';
-import Checkout from './pages/Checkout.jsx';
-import SignIn from './pages/SignIn.jsx';
-import SignUp from './pages/SignUp.jsx';
-import Profile from './pages/Profile.jsx';
-import ManageOrders from './pages/Manageorder.jsx';
-import Notifications from './pages/Notifications.jsx';
-import Wishlist from './pages/Wishlist.jsx';
-import OrderHistory from './pages/OrderHistory.jsx';
+import Home from './pages/Home';
+import Cart from './pages/Cart'; 
+import Contact from './pages/Contact'; 
+import About from './pages/About'; 
+import Terms from './pages/Terms'; 
+import PrivacyPolicy from './Pages/PrivacyPolicy';
+import ReturnPolicy from './pages/ReturnPolicy';
+import ShippingPolicy from './pages/ShippingPolicy';
+import Shop from './pages/Shop'; 
+import ProductDetail from './pages/ProductDetail';
+import Checkout from './pages/Checkout';
+import SignIn from './pages/SignIn';
+import SignUp from './pages/SignUp';
+import Profile from './pages/Profile';
+import ManageOrders from './pages/Manageorder';
+import Notifications from './pages/Notifications';
+import Wishlist from './pages/Wishlist';
+import OrderHistory from './pages/OrderHistory';
 
 // === ADMIN PAGES ===
-import AdminLogin from './pages/AdminLogin.jsx';
-import Admin from './pages/Admin.jsx';
+import AdminLogin from './pages/AdminLogin';
+import Admin from './pages/Admin';
 
 // === CONTEXT PROVIDERS ===
-import { CartProvider } from './context/CartContext.jsx';
-import { AuthProvider } from './context/AuthContext.jsx';
+import { CartProvider } from './context/CartContext';
+import { AuthProvider } from './context/AuthContext';
 
 
 
