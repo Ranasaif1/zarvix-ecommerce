@@ -5,8 +5,8 @@ import { Power } from 'lucide-react';
 
 // === COMPONENTS ===
 import Header from './Components/Header';
-import Footer from './components/Footer';
-import PageBanner from './components/PageBanner'; 
+import Footer from './Components/Footer';
+import PageBanner from './Components/PageBanner'; 
 
 // === PAGES ===
 import Home from './pages/Home';
