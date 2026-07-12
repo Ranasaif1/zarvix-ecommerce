@@ -20,7 +20,7 @@ function AdminLogin() {
 
         try {
             // Backend se check karo
-            const response = await axios.post('http://localhost:8000/api/admin/login', {
+            const response = await axios.post('https://zarvix-ecommerce.vercel.app/api/admin/login', {
                 email: email,
                 password: password
             });

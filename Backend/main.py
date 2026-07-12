@@ -438,7 +438,7 @@ async def create_product(
             file_location = f"{UPLOAD_DIR}/{img.filename}"
             with open(file_location, "wb+") as file_object:
                 shutil.copyfileobj(img.file, file_object)
-            image_url = f"http://localhost:8000/uploads/{img.filename}"
+            image_url = f"https://zarvix-ecommerce.vercel.app/uploads/{img.filename}"
             saved_image_urls.append(image_url)
 
         db_product = models.Product(

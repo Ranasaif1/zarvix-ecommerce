@@ -24,7 +24,7 @@ function Cart() {
     if (cart.length === 0) {
         return (
             <div className="bg-[#f8f9fa] min-h-screen pt-12 pb-24" style={{ fontFamily: "'Montserrat', sans-serif" }}>
-                <div className="max-w-[1400px] mx-auto px-4 md:px-6">
+                <div className="max-w-350 mx-auto px-4 md:px-6">
                     <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-12 md:p-24 text-center max-w-3xl mx-auto mt-10">
                         <div className="w-24 h-24 bg-gray-50 text-gray-300 rounded-full flex items-center justify-center mx-auto mb-6">
                             <ShoppingCart size={48} />
@@ -45,7 +45,7 @@ function Cart() {
     // FILLED CART STATE
     return (
         <div className="bg-[#f8f9fa] min-h-screen pt-6 pb-24" style={{ fontFamily: "'Montserrat', sans-serif" }}>
-            <div className="max-w-[1400px] mx-auto px-4 md:px-6">
+            <div className="max-w-350 mx-auto px-4 md:px-6">
                 
                 {/* Clean Breadcrumb */}
                 <div className="pb-6 flex flex-wrap items-center gap-2 text-xs font-bold uppercase tracking-widest text-gray-400">

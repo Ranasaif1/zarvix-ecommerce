@@ -24,7 +24,7 @@ function AllProducts() {
     const fetchProducts = () => {
         setIsLoading(true);
         // 🔥 FIX: Ab hum purane route ke bajaye direct apne VIP route se data mangwayenge
-        axios.get('http://localhost:8000/api/products')
+        axios.get('https://zarvix-ecommerce.vercel.app/api/products')
             .then(response => {
                 setProducts(Array.isArray(response.data) ? response.data : []);
                 setIsLoading(false);
@@ -40,7 +40,7 @@ function AllProducts() {
     const handleDelete = (id, name) => {
         const confirmDelete = window.confirm(`Kiya aap waqai "${name}" ko delete karna chahte hain? Yeh action wapas nahi ho sakta!`);
         if (confirmDelete) {
-            axios.delete(`http://localhost:8000/api/products/${id}`)
+            axios.delete(`https://zarvix-ecommerce.vercel.app/api/products/${id}`)
                 .then(() => {
                     alert("Product deleted successfully! 🗑️");
                     fetchProducts(); 
@@ -84,7 +84,7 @@ function AllProducts() {
         // Console mein check karne ke liye (Browser mein F12 daba kar dekh sakte hain)
         console.log("Frontend Bhej Raha Hai:", payload);
 
-        axios.put(`http://localhost:8000/api/products/${selectedProduct.id}`, payload)
+        axios.put(`https://zarvix-ecommerce.vercel.app/api/products/${selectedProduct.id}`, payload)
             .then(response => {
                 alert("Zabardast! Product mukammal update ho gaya! ✅");
                 setIsEditModalOpen(false);

@@ -27,7 +27,7 @@ function Wishlist() {
     // Backend se Wishlist Data Mangwana
     const fetchWishlist = () => {
         setIsLoading(true);
-        axios.get(`http://localhost:8000/api/users/${user.id}/wishlist`)
+        axios.get(`https://zarvix-ecommerce.vercel.app/api/users/${user.id}/wishlist`)
             .then(response => {
                 setWishlist(response.data);
                 setIsLoading(false);
@@ -44,7 +44,7 @@ function Wishlist() {
         setWishlist(wishlist.filter(item => item.id !== productId));
 
         // Backend API call delete karne ke liye
-        axios.delete(`http://localhost:8000/api/users/${user.id}/wishlist/${productId}`)
+        axios.delete(`https://zarvix-ecommerce.vercel.app/api/users/${user.id}/wishlist/${productId}`)
             .catch(error => {
                 console.error("Error removing from wishlist:", error);
                 fetchWishlist(); // Agar error aaye tou wapas purana data load karlo

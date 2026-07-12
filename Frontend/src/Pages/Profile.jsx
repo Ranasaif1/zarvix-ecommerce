@@ -24,7 +24,7 @@ function Profile() {
         }
 
         // Backend se profile ka data mangwao
-        axios.get(`http://localhost:8000/api/users/${user.id}/profile`)
+        axios.get(`https://zarvix-ecommerce.vercel.app/api/users/${user.id}/profile`)
             .then(response => {
                 setPhone(response.data.phone || '');
                 setPrimaryAddress(response.data.primary_address || '');
@@ -67,7 +67,7 @@ function Profile() {
         };
 
         try {
-            await axios.post(`http://localhost:8000/api/users/${user.id}/profile`, profileData);
+            await axios.post(`https://zarvix-ecommerce.vercel.app/api/users/${user.id}/profile`, profileData);
             alert("Profile successfully updated! 🎉");
         } catch (error) {
             console.error("Update Error:", error);

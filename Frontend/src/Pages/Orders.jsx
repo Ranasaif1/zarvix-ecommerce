@@ -25,7 +25,7 @@ function Orders() {
     const fetchOrders = () => {
         setIsLoading(true);
         // Dhyan se dekhein: URL ab /api/admin/orders hai
-        axios.get('http://localhost:8000/api/admin/orders')
+        axios.get('https://zarvix-ecommerce.vercel.app/api/admin/orders')
             .then(response => {
                 // Agar data theek hai tou orders set karo, warna empty array []
                 if (response.data && Array.isArray(response.data)) {
@@ -66,7 +66,7 @@ function Orders() {
         };
 
         // Yahan real_id bhejni zaroori hai kyunke 'id' mein ZRVX-10001 hai
-        axios.put(`http://localhost:8000/api/orders/${selectedOrder.real_id}`, payload)
+        axios.put(`https://zarvix-ecommerce.vercel.app/api/orders/${selectedOrder.real_id}`, payload)
             .then(response => {
                 alert(`Order ${selectedOrder.id} Successfully Updated! ✅\nCustomer will now see this updated status in their panel.`);
                 setIsUpdating(false);

@@ -14,7 +14,7 @@ function Notifications() {
     // === FETCH REAL NOTIFICATIONS FROM BACKEND ===
     const fetchNotifications = useCallback(() => {
         setIsLoading(true);
-        axios.get(`http://localhost:8000/api/users/${user.id}/notifications`)
+        axios.get(`https://zarvix-ecommerce.vercel.app/api/users/${user.id}/notifications`)
             .then(response => {
                 // 🔥 DEBUGGING: Yeh line humein browser console mein asal data dikhayegi
                 console.log("Backend se ye notifications aayi hain:", response.data); 
@@ -47,7 +47,7 @@ function Notifications() {
         // Safe UI Update
         setNotifications(prev => prev.map(n => n.id === id ? { ...n, is_read: true } : n));
         
-        axios.put(`http://localhost:8000/api/notifications/${id}/read`)
+        axios.put(`https://zarvix-ecommerce.vercel.app/api/notifications/${id}/read`)
             .catch(error => console.error("Error marking read:", error));
     };
 
@@ -57,7 +57,7 @@ function Notifications() {
         
         notifications.forEach(n => {
             if (!n.is_read) {
-                axios.put(`http://localhost:8000/api/notifications/${n.id}/read`)
+                axios.put(`https://zarvix-ecommerce.vercel.app/api/notifications/${n.id}/read`)
                     .catch(error => console.error("Error marking read:", error));
             }
         });
@@ -68,7 +68,7 @@ function Notifications() {
         // Safe UI removal
         setNotifications(prev => prev.filter(n => n.id !== id));
         
-        axios.delete(`http://localhost:8000/api/notifications/${id}`)
+        axios.delete(`https://zarvix-ecommerce.vercel.app/api/notifications/${id}`)
             .catch(error => console.error("Error deleting notification:", error));
     };
 
