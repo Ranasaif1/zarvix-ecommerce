@@ -7,9 +7,9 @@ import { CartContext } from '../context/CartContext';
 import { ShoppingCart, Star, Truck, HeadphonesIcon, ShieldCheck, RefreshCw, ArrowRight, Mail, Loader2 } from 'lucide-react';
 
 // Imported Components
-import Hero from '../components/Hero';
-import FlashSale from '../components/FlashSale';
-import PromoBanners from '../components/PromoBanners';
+import Hero from '../Components/Hero';
+import FlashSale from '../Components/FlashSale';
+import PromoBanners from '../Components/PromoBanners';
 
 // Images for the rest of the page
 import midBanner from '../assets/mid-banner.png';
