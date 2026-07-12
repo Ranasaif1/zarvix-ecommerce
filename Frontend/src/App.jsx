@@ -13,7 +13,7 @@ import Home from './pages/Home';
 import Cart from './pages/Cart'; 
 import Contact from './pages/Contact'; 
 import About from './pages/About'; 
-import Terms from './Pages/Terms'; 
+import Terms from './pages/Terms'; 
 import PrivacyPolicy from './Pages/PrivacyPolicy';
 import ReturnPolicy from './pages/ReturnPolicy';
 import ShippingPolicy from './pages/ShippingPolicy';
