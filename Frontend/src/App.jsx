@@ -4,16 +4,16 @@ import axios from 'axios';
 import { Power } from 'lucide-react';
 
 // === COMPONENTS ===
-import Header from './Components/Header.jsx';
-import Footer from './components/Footer.jsx';
-import PageBanner from './components/PageBanner.jsx'; 
+import Header from './Components/Header';
+import Footer from './components/Footer';
+import PageBanner from './components/PageBanner'; 
 
 // === PAGES ===
 import Home from './pages/Home';
 import Cart from './pages/Cart'; 
 import Contact from './pages/Contact'; 
 import About from './pages/About'; 
-import Terms from './pages/Terms'; 
+import Terms from './Pages/Terms'; 
 import PrivacyPolicy from './Pages/PrivacyPolicy';
 import ReturnPolicy from './pages/ReturnPolicy';
 import ShippingPolicy from './pages/ShippingPolicy';
