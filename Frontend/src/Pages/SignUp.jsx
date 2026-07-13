@@ -40,7 +40,7 @@ function SignUp() {
                 password: formData.password
             };
 
-            const response = await axios.post('https://zarvix-ecommerce.vercel.app/api/auth/register', payload);
+            const response = await axios.post('https://backend-phi-three-82.vercel.app/api/auth/register', payload);
             
             alert("Account Created Successfully! 🎉 Please Sign In.");
             navigate('/signin'); // Register hotay hi Sign In par bhej do

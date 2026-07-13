@@ -32,9 +32,9 @@ function Admin() {
         try {
             const [prodRes, orderRes] = await Promise.all([
                 // Aapka working VIP route use kar rahay hain
-                axios.get('https://zarvix-ecommerce.vercel.app/api/products').catch(() => ({ data: [] })),
+                axios.get('https://backend-phi-three-82.vercel.app/api/products').catch(() => ({ data: [] })),
                 // Orders ka route
-                axios.get('https://zarvix-ecommerce.vercel.app/api/orders').catch(() => ({ data: [] }))
+                axios.get('https://backend-phi-three-82.vercel.app/api/orders').catch(() => ({ data: [] }))
             ]);
             
             setProducts(Array.isArray(prodRes.data) ? prodRes.data : []);

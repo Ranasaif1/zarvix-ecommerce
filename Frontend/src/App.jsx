@@ -111,7 +111,7 @@ function App() {
 
     // App start hotay hi settings mangwayen
     useEffect(() => {
-        axios.get('http://localhost:8000/api/settings')
+        axios.get('https://backend-phi-three-82.vercel.app/api/settings')
             .then(response => {
                 setSettings(response.data);
             })

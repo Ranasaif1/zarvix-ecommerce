@@ -20,7 +20,7 @@ function ManageOrders() {
         // === FETCH CUSTOMER ORDERS ===
         const fetchOrders = () => {
             setIsLoading(true);
-            axios.get(`https://zarvix-ecommerce.vercel.app/api/users/${user.id}/orders`)
+            axios.get(`https://backend-phi-three-82.vercel.app/api/users/${user.id}/orders`)
                 .then(response => {
                     if (response.data && Array.isArray(response.data)) {
                         setOrders(response.data);

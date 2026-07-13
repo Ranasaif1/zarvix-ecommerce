@@ -34,7 +34,7 @@ function Checkout() {
         }
 
         // 🔥 2. Backend se Admin Settings Fetch Karein
-        axios.get('https://zarvix-ecommerce.vercel.app/api/settings')
+        axios.get('https://backend-phi-three-82.vercel.app/api/settings')
             .then(response => {
                 const data = response.data;
                 setSettings(data);
@@ -94,7 +94,7 @@ function Checkout() {
         };
 
         try {
-            const response = await axios.post("https://zarvix-ecommerce.vercel.app/api/orders", orderPayload);
+            const response = await axios.post("https://backend-phi-three-82.vercel.app/api/orders", orderPayload);
             
             if (paymentMethod === 'card') {
                 alert(`Mubarak ho! ${currency} ${finalTotal.toLocaleString()} ki Advance Payment successfully receive ho gayi hai. 🎉\nOrder ID: ZRVX-${10000 + response.data.order_id}`);

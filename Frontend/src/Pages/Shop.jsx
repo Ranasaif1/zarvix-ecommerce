@@ -23,7 +23,7 @@ function Shop() {
     // === FETCH REAL PRODUCTS FROM BACKEND ===
     const fetchProducts = () => {
         setIsLoading(true);
-        axios.get('https://zarvix-ecommerce.vercel.app/api/products')
+        axios.get('https://backend-phi-three-82.vercel.app/api/products')
             .then(response => {
                 setAllProducts(response.data);
                 setIsLoading(false);

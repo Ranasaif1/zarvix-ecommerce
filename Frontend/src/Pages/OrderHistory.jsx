@@ -21,7 +21,7 @@ function OrderHistory() {
         }
 
         // === FETCH REAL ORDERS FROM BACKEND ===
-        axios.get(`https://zarvix-ecommerce.vercel.app/api/users/${user.id}/orders`)
+        axios.get(`https://backend-phi-three-82.vercel.app/api/users/${user.id}/orders`)
             .then(response => {
                 // Check lagaya hai taake null aaye tou crash na ho
                 if (response.data && Array.isArray(response.data)) {

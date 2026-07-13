@@ -21,7 +21,7 @@ function Customers() {
     // === FETCH REAL CUSTOMERS FROM DATABASE ===
     const fetchCustomers = () => {
         setIsLoading(true);
-        axios.get('https://zarvix-ecommerce.vercel.app/api/admin/customers')
+        axios.get('https://backend-phi-three-82.vercel.app/api/admin/customers')
             .then(response => {
                 // Add a default is_active status to all fetched customers for UI handling
                 const dataWithStatus = response.data.map(c => ({ ...c, is_active: c.status !== 'Blocked' }));
@@ -51,7 +51,7 @@ function Customers() {
             ));
 
             // Real API Call
-            axios.put(`https://zarvix-ecommerce.vercel.app/api/admin/users/${customer.id}/block`)
+            axios.put(`https://backend-phi-three-82.vercel.app/api/admin/users/${customer.id}/block`)
                 .then(() => alert(`${customer.name} has been ${action}ed successfully!`))
                 .catch(err => {
                     console.error("Error updating status:", err);
@@ -75,8 +75,8 @@ function Customers() {
         };
 
         const apiUrl = isBroadcast 
-            ? `https://zarvix-ecommerce.vercel.app/api/admin/notify-all` 
-            : `https://zarvix-ecommerce.vercel.app/api/admin/users/${selectedCustomer.id}/notify`;
+            ? `https://backend-phi-three-82.vercel.app/api/admin/notify-all` 
+            : `https://backend-phi-three-82.vercel.app/api/admin/users/${selectedCustomer.id}/notify`;
 
         axios.post(apiUrl, payload)
         .then(response => {

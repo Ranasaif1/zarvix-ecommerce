@@ -39,7 +39,7 @@ function Settings() {
 
     const fetchSettings = () => {
         setIsLoading(true);
-        axios.get('https://zarvix-ecommerce.vercel.app/api/settings')
+        axios.get('https://backend-phi-three-82.vercel.app/api/settings')
             .then(response => {
                 // Agar backend par data hai toh update karein warna default use karein
                 if(response.data) setSettings(response.data);
@@ -71,7 +71,7 @@ function Settings() {
         setIsSaving(true);
         
         // Backend par settings save karne ki request
-        axios.put('https://zarvix-ecommerce.vercel.app/api/settings', settings)
+        axios.put('https://backend-phi-three-82.vercel.app/api/settings', settings)
             .then(response => {
                 alert("Store Settings successfully updated and applied! ⚙️✅");
                 setIsSaving(false);
@@ -93,7 +93,7 @@ function Settings() {
         }
 
         setIsUpdatingPwd(true);
-        axios.post('https://zarvix-ecommerce.vercel.app/api/admin/update-password', passwordData)
+        axios.post('https://backend-phi-three-82.vercel.app/api/admin/update-password', passwordData)
             .then(response => {
                 alert("Admin Password updated successfully! 🔒");
                 setPasswordData({ currentPassword: '', newPassword: '' });

@@ -43,7 +43,7 @@ function ProductDetail() {
     // === FETCH PRODUCT DETAILS ===
     const fetchProductDetails = () => {
         setIsLoading(true);
-        axios.get(`https://zarvix-ecommerce.vercel.app/api/products/${id}`)
+        axios.get(`https://backend-phi-three-82.vercel.app//api/products/${id}`)
             .then(response => {
                 const data = response.data;
                 setProduct(data);
@@ -55,7 +55,7 @@ function ProductDetail() {
                 if (data.storage_ram) setSelectedSize(data.storage_ram.split(',')[0].trim()); 
                 
                 // Fetch Related Products
-                axios.get(`https://zarvix-ecommerce.vercel.app/api/products`)
+                axios.get(`https://backend-phi-three-82.vercel.app/api/products`)
                     .then(res => {
                         const allProds = res.data;
                         const related = allProds.filter(p => p.category === data.category && p.id !== data.id).slice(0, 4);
@@ -71,7 +71,7 @@ function ProductDetail() {
 
     // === WISHLIST LOGIC ===
     const checkWishlistStatus = () => {
-        axios.get(`https://zarvix-ecommerce.vercel.app/api/users/${user.id}/wishlist`)
+        axios.get(`https://backend-phi-three-82.vercel.app/api/users/${user.id}/wishlist`)
             .then(response => {
                 const inWishlist = response.data.some(item => item.product_id === parseInt(id));
                 setIsWishlisted(inWishlist);
@@ -89,7 +89,7 @@ function ProductDetail() {
         setIsWishlistLoading(true);
 
         if (isWishlisted) {
-            axios.delete(`https://zarvix-ecommerce.vercel.app/api/users/${user.id}/wishlist/${id}`)
+            axios.delete(`https://backend-phi-three-82.vercel.app/api/users/${user.id}/wishlist/${id}`)
                 .then(() => {
                     setIsWishlisted(false);
                     setIsWishlistLoading(false);
@@ -99,7 +99,7 @@ function ProductDetail() {
                     setIsWishlistLoading(false);
                 });
         } else {
-            axios.post(`https://zarvix-ecommerce.vercel.app/api/users/${user.id}/wishlist`, { product_id: parseInt(id) })
+            axios.post(`https://backend-phi-three-82.vercel.app/api/users/${user.id}/wishlist`, { product_id: parseInt(id) })
                 .then(() => {
                     setIsWishlisted(true);
                     setIsWishlistLoading(false);

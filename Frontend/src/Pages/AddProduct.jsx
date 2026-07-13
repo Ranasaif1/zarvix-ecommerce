@@ -113,7 +113,7 @@ function AddProduct() {
         productImages.forEach((imgObj) => data.append(`product_images`, imgObj.file));
         descImages.forEach((imgObj) => data.append(`desc_images`, imgObj.file));
 
-        axios.post('https://zarvix-ecommerce.vercel.app/api/products', data, {
+        axios.post('https://backend-phi-three-82.vercel.app/api/products', data, {
             headers: { 'Content-Type': 'multipart/form-data' }
         })
         .then(response => {

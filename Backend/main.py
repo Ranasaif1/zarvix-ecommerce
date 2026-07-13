@@ -3,6 +3,7 @@ import shutil
 from database import SessionLocal
 from datetime import datetime, timedelta
 from typing import List, Optional
+from contextlib import asynccontextmanager
 
 # FastAPI & Pydantic Imports
 from fastapi import FastAPI, Depends, File, UploadFile, Form, HTTPException, status, Body
@@ -24,12 +25,44 @@ from database import engine, get_db
 # === DATABASE SETUP ===
 models.Base.metadata.create_all(bind=engine)
 
+def init_db():
+    db_admin_user = os.getenv("ADMIN_USERNAME")
+    db_admin_pass = os.getenv("ADMIN_PASSWORD")
+
+    if not db_admin_user or not db_admin_pass:
+        print("❌ Error: ADMIN_USERNAME ya ADMIN_PASSWORD missing hai .env mein!")
+        return
+
+    db = SessionLocal()
+    try:
+        admin = db.query(models.Admin).first()
+        if not admin:
+            print("⚙️ Admin account missing! Creating default admin from .env...")
+            new_admin = models.Admin(
+                username=db_admin_user,
+                password=db_admin_pass
+            )
+            db.add(new_admin)
+            db.commit()
+            print("✅ Default Admin created successfully!")
+        else:
+            print("ℹ️ Admin already exists in database.")
+    except Exception as e:
+        print(f"❌ Database error in init_db: {e}")
+    finally:
+        db.close()
+
 # === APP & CORS SETUP ===
-app = FastAPI() 
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    init_db()   # Server start hote hi admin create/check karega
+    yield
+
+app = FastAPI(lifespan=lifespan)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -37,8 +70,11 @@ app.add_middleware(
 
 # === UPLOADS FOLDER SETUP ===
 UPLOAD_DIR = "uploads"
-os.makedirs(UPLOAD_DIR, exist_ok=True)
-app.mount("/uploads", StaticFiles(directory=UPLOAD_DIR), name="uploads")
+try:
+    os.makedirs(UPLOAD_DIR, exist_ok=True)
+    app.mount("/uploads", StaticFiles(directory=UPLOAD_DIR), name="uploads")
+except Exception as e:
+    print(f"Vercel Read-Only System - Folder nahi ban sakta: {e}")
 
 # === SECURITY & AUTH SETUP ===
 SECRET_KEY = "Zarvix_Digital_Super_Secret_Key_123!" 
@@ -438,7 +474,7 @@ async def create_product(
             file_location = f"{UPLOAD_DIR}/{img.filename}"
             with open(file_location, "wb+") as file_object:
                 shutil.copyfileobj(img.file, file_object)
-            image_url = f"https://zarvix-ecommerce.vercel.app/uploads/{img.filename}"
+            image_url = f"https://backend-phi-three-82.vercel.app/uploads/{img.filename}"
             saved_image_urls.append(image_url)
 
         db_product = models.Product(
@@ -469,6 +505,27 @@ async def create_product(
 
     except Exception as e:
         return {"error": str(e)}
+    
+# ==========================================
+#          DELETE PRODUCT API (DELETE)
+# ==========================================
+@app.delete("/api/products/{product_id}")
+def delete_product(product_id: int, db: Session = Depends(get_db)):
+    # 1. Database mein product dhoondein
+    product = db.query(models.Product).filter(models.Product.id == product_id).first()
+    
+    # 2. Agar product nahi milta toh 404 error dein
+    if not product:
+        raise HTTPException(status_code=404, detail="Product pehle hi delete ho chuka hai ya nahi mila")
+        
+    # 3. Agar mil jaye toh delete kar ke commit karein
+    try:
+        db.delete(product)
+        db.commit()
+        return {"message": "Product successfully delete ho gaya!"}
+    except Exception as e:
+        db.rollback()
+        raise HTTPException(status_code=500, detail=f"Delete karne mein masla aaya: {e}")
 
 # ==========================================
 # GET ALL PRODUCTS (FIXED - NO SCHEMA)
@@ -671,18 +728,16 @@ def get_store_settings():
 @app.put("/api/settings")
 def update_store_settings(settings: SettingsUpdate):
     try:
-        # React se aanay wale data ko dictionary banaya
         settings_dict = settings.model_dump()
-        
-        # Us data ko file mein mehfooz kar diya
-        with open(SETTINGS_FILE, "w") as f:
-            json.dump(settings_dict, f, indent=4)
+        try:
+            with open(SETTINGS_FILE, "w") as f:
+                json.dump(settings_dict, f, indent=4)
+        except Exception:
+            print("Vercel par file save nahi ho sakti, memory mein rahegi")
             
         return {"message": "Store Settings updated successfully", "data": settings_dict}
     except Exception as e:
-        # Agar error aaye toh backend ka SOS bhejo
-        print(f"❌ Error saving settings: {e}")
-        return {"error": "Settings save nahi ho saki"}    
+        return {"error": "Settings save nahi ho saki"} 
 
 @app.post("/api/admin/update-password")
 def update_admin_password(req: PasswordChangeRequest, db: Session = Depends(get_db)):
@@ -751,7 +806,3 @@ def init_db():
         print(f"❌ Database error in init_db: {e}")
     finally:
         db.close()
-
-# Ab isay run karein
-if __name__ == "__main__":
-    init_db()
